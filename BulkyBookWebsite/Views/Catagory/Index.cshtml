@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Catagory>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-Success">Catagory List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Catagory" asp-action="Create" class="btn btn-danger">
+                <i class="bi bi-plus-circle"></i>&nbsp; Create A New Catagory
+            </a>
+        </div>
+
+    </div>
+    <br />
+
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Catagory Name
+                </th>
+                <th>
+                    Display Order
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td width="50%">
+                        @item.Name
+                    </td>
+
+                    <td width="30%">
+                        @item.DispalyOrder
+                    </td>
+                    <td>
+                        <div class="w-75 btn-group ms-2" role="group">
+                            <a class="btn btn-primary editbtn"
+                           asp-action="Edit" asp-controller="Catagory" asp-route-Id="@item.Id"> <i class="bi bi-pencil-square"></i>Edit</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a class="btn btn-primary editbtn"
+                           asp-action="Delete" asp-controller="Catagory" asp-route-Id="@item.Id"> <i class="bi bi-pencil-square"></i>Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <partial name="_Notification" />
+</div>
